@@ -1,9 +1,8 @@
-import mongoose, { Model, ObjectId } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { Cat } from './interfaces/cat.interface';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { NationsService } from 'src/nations/nations.service';
-// import { NationSchema } from 'src/nations/schemas/nation.schemas';
 
 @Injectable()
 export class CatsService {
@@ -32,10 +31,8 @@ export class CatsService {
     const filter = {
       _id: id,
     };
-    // console.log(id);
     const objectId = new mongoose.Types.ObjectId(id);
     await this.catModel.updateOne(filter, updateCat);
-    // const idUpdate = ObjectId(id);
     return this.catModel.findOne(objectId).exec();
   }
 }
